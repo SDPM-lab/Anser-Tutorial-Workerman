@@ -5,6 +5,8 @@ services:
         # https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php.html
         build: ./
         platform: linux/x86_64
+        networks:
+            - anser_project_network
         ports:
             - 8085:8080
         working_dir: /app
@@ -15,7 +17,7 @@ services:
             - PHP_UPLOAD_MAX_FILESIZE=200M
             - XDEBUG_MODE=coverage
         volumes:
-            - './app:/app'
+            - './:/app'
     anser_redis:
         image: redis:latest
         networks:
