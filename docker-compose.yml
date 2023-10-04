@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+    app:
+        # https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php.html
+        build: ./
+        platform: linux/x86_64
+        ports:
+            - 8085:8080
+        working_dir: /app
+        environment: 
+            - PHP_MEMORY_LIMIT=2048M
+            - PHP_MAX_EXECUTION_TIME=600
+            - PHP_POST_MAX_SIZE=200M
+            - PHP_UPLOAD_MAX_FILESIZE=200M
+            - XDEBUG_MODE=coverage
+        volumes:
+            - './app:/app'
+    anser_redis:
+        image: redis:latest
+        networks:
+            - anser_project_network
+        ports:
+            - 6379:6379
+networks:
+    anser_project_network:
+        external: true
