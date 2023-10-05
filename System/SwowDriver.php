@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Worker;
+namespace System;
 
 use RuntimeException;
 use Swow\Coroutine;
